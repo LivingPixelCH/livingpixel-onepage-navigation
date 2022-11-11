@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "livingpixel/onepage-navigation",
+	"version": "0.1.0",
+	"title": "Livingpixel - Onepage Navigation",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Display a navidation for group blocks.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"navigation": {
+			"type": "array",
+			"default": []
+		}
+	},
+	"textdomain": "livingpixel-onepage-navigation",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
