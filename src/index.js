@@ -5,11 +5,14 @@ import { addFilter } from "@wordpress/hooks";
 import { createHigherOrderComponent } from "@wordpress/compose";
 import { PanelBody, TextControl } from "@wordpress/components";
 import { InspectorControls } from "@wordpress/block-editor";
+import { useSelect, useDispatch, select, subscribe } from "@wordpress/data";
 import slugify from "react-slugify";
 
 import Edit from "./edit";
 import save from "./save";
 import metadata from "./block.json";
+
+import "./store";
 
 import "./style.scss";
 
@@ -46,6 +49,16 @@ const withInspectorControl = createHigherOrderComponent((BlockEdit) => {
 		const attributes = props.attributes;
 		const { navigationName } = attributes;
 
+		const store = useDispatch("livingpixel-onepage/navigation");
+
+		if (navigationName !== "") {
+			store.addNavigationItem(
+				props.clientId,
+				slugify(navigationName),
+				navigationName
+			);
+		}
+
 		return (
 			<>
 				<BlockEdit {...props} />
@@ -57,12 +70,16 @@ const withInspectorControl = createHigherOrderComponent((BlockEdit) => {
 						<TextControl
 							label={__("Navigation Name", "livingpixel-onepage-navigation")}
 							value={navigationName}
-							onChange={(navigationName) =>
+							onChange={(navigationName) => {
+								const anchor = slugify(navigationName);
+
+								store.addNavigationItem(props.clientId, anchor, navigationName);
+
 								props.setAttributes({
 									navigationName,
-									anchor: slugify(navigationName),
-								})
-							}
+									anchor,
+								});
+							}}
 						/>
 					</PanelBody>
 				</InspectorControls>
