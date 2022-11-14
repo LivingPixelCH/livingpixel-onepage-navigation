@@ -9,7 +9,7 @@ import { useSelect, useDispatch, select, subscribe } from "@wordpress/data";
 import slugify from "react-slugify";
 
 import Edit from "./edit";
-import save from "./save";
+import Save from "./save";
 import metadata from "./block.json";
 
 import "./store";
@@ -96,4 +96,5 @@ addFilter(
 
 registerBlockType(metadata.name, {
 	edit: Edit,
+	save: Save,
 });

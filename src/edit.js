@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import { useBlockProps } from "@wordpress/block-editor";
-import { useState, useEffect, useCallback, useMemo } from "@wordpress/element";
-import { useSelect, select, subscribe } from "@wordpress/data";
-import { debounce, isEqual } from "lodash";
+import { useEffect } from "@wordpress/element";
+import { useSelect } from "@wordpress/data";
+import { isEqual } from "lodash";
 
 import "./editor.scss";
 
